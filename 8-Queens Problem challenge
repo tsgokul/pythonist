@@ -56,7 +56,7 @@ def main():
                 if chessboard[j][i] == 1:
                     rightSequence[i] = j
         print("Right Sequence for 8*8 Queensin Chessboard -- ",rightSequence)
-        print("\nChessboard position : \n\t")
+        print("\nChessboard Display format : \n\t")
         for i in range(nqueen):
             #for j in range(nqueen):
                 print (chessboard[i][0], " ", chessboard[i][1], " ", chessboard[i][2], " ", chessboard[i][3], " ", chessboard[i][4], " ", chessboard[i][5], " ", chessboard[i][6], " ", chessboard[i][7])
