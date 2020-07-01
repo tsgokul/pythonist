@@ -1,0 +1,65 @@
+def check (chessboard, row, col):
+    # check left row
+    for y in range(col):
+        if chessboard[row][y] == 1:
+            return False
+    # check diagonal left top
+    for x, y in zip(range(row, -1, -1), range(col, -1, -1)):
+        if chessboard[x][y] == 1:
+            return False
+    # check diagonal left bottom
+    for x, y in zip(range(row, nqueen, 1), range(col, -1, -1)):
+        if chessboard[x][y] == 1:
+            return False
+
+    return True
+
+def solution(chessboard, col=0):
+    # terminating condition
+    # all columns covered
+    
+    if col >= nqueen:
+        return True
+    # loop over all the rows
+    for i in range(nqueen):
+        if check(chessboard, i, col) == True:
+            chessboard[i][col] = 1
+            # recursively place other queens
+            if solution(chessboard, col + 1) == True:
+                return True
+            # unmark queen spot
+            chessboard[i][col] = 0
+    # backtrack
+    return False
+
+def initialPopulation(nqueen):
+    
+    global chessboard
+    chessboard = [[0 for i in range(nqueen)] for j in range(nqueen)]
+    
+
+def main():
+    global nqueen
+    global rightSequence
+    # To provide number of Queens as input
+    #nqueen = int(input())
+    nqueen = 8
+    startCol = 0
+    initialPopulation(nqueen)
+    if solution(chessboard, startCol) == False:
+        print("Please try again")
+    else:
+        #print(chessboard)
+        rightSequence = [[0 for i in range(0)] for j in range(nqueen)]
+        for i in range(nqueen):
+            for j in range(nqueen):
+                if chessboard[j][i] == 1:
+                    rightSequence[i] = j
+        print("Right Sequence for 8*8 Queensin Chessboard -- ",rightSequence)
+        print("\nChessboard position : \n\t")
+        for i in range(nqueen):
+            #for j in range(nqueen):
+                print (chessboard[i][0], " ", chessboard[i][1], " ", chessboard[i][2], " ", chessboard[i][3], " ", chessboard[i][4], " ", chessboard[i][5], " ", chessboard[i][6], " ", chessboard[i][7])
+     
+if __name__ == '__main__':
+    main()
